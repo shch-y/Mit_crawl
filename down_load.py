@@ -10,7 +10,8 @@ def down_load(url_base:str,save_path:str):
 
 
     down_list = soup.find_all(lambda tag: tag.name== "a" and tag.get("download")=="")
-
+    if len(down_list) == 0 :
+        return False
     down_list_final = {}
     for i in range(len(down_list)):
         name = down_list[i]["href"].split("/")[3]
@@ -32,3 +33,5 @@ def down_load(url_base:str,save_path:str):
         Homework_modify(save_path)
     if "recitations" in url_base:
         Homework_modify(save_path)
+        
+    return True
